@@ -1,9 +1,24 @@
 'use strict';
 
-function makeTransaction(quantity, pricePerDroid) {
-    return `You ordered ${quantity} droids worth ${quantity * pricePerDroid} credits!`;
-}
 
-console.log(makeTransaction(5, 3000)); // "You ordered 5 droids worth 15000 credits!"
-console.log(makeTransaction(3, 1000)); // "You ordered 3 droids worth 3000 credits!"
-console.log(makeTransaction(10, 500)); // "You ordered 10 droids worth 5000 credits!"
+const pizzaPalace = {
+  pizzas: ["Supercheese", "Smoked", "Four meats"],
+  order(pizzaName) {
+    const isPizzaAvailable = this.checkPizza(pizzaName);
+
+    if (!isPizzaAvailable) {
+      return `Извините, пиццы с названием «${pizzaName}» не существует.`;
+    }
+
+    return `Заказ принят, готовится пицца «${pizzaName}».`;
+  },
+  checkPizza(pizzaName) {
+    return this.pizzas.includes(pizzaName);
+  },
+};
+
+let pizzaName = "Smoked";
+console.log(pizzaPalace.order(pizzaName));
+
+pizzaName = "Eror";
+console.log(pizzaPalace.order(pizzaName));
