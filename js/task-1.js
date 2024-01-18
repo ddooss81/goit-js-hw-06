@@ -1,24 +1,31 @@
-'use strict';
-
-
-const pizzaPalace = {
-  pizzas: ["Supercheese", "Smoked", "Four meats"],
-  order(pizzaName) {
-    const isPizzaAvailable = this.checkPizza(pizzaName);
-
-    if (!isPizzaAvailable) {
-      return `Извините, пиццы с названием «${pizzaName}» не существует.`;
-    }
-
-    return `Заказ принят, готовится пицца «${pizzaName}».`;
+`use strict`;
+const customer = {
+  username: "Mango",
+  balance: 24000,
+  discount: 0.1,
+  orders: ["Burger", "Pizza", "Salad"],
+  // Change code below this line
+  getBalance() {
+    return this.balance;
   },
-  checkPizza(pizzaName) {
-    return this.pizzas.includes(pizzaName);
+  getDiscount() {
+    return this.discount;
   },
+  setDiscount(value) {
+    this.discount = value;
+  },
+  getOrders() {
+    return this.orders;
+  },
+  addOrder(cost, order) {
+    this.balance -= cost - cost * this.discount;
+    this.orders.push(order);
+  },
+  // Change code above this line
 };
 
-let pizzaName = "Smoked";
-console.log(pizzaPalace.order(pizzaName));
-
-pizzaName = "Eror";
-console.log(pizzaPalace.order(pizzaName));
+customer.setDiscount(0.15);
+console.log(customer.getDiscount()); // 0.15
+customer.addOrder(5000, "Steak");
+console.log(customer.getBalance()); // 19750
+console.log(customer.getOrders()); // ["Burger", "Pizza", "Salad", "Steak"]
